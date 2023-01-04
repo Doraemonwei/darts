@@ -145,6 +145,7 @@ class NetworkCIFAR(nn.Module):
 
   def forward(self, input):
     logits_aux = None
+    torch.cuda.empty_cache()
     s0 = s1 = self.stem(input)
     for i, cell in enumerate(self.cells):
       s0, s1 = s1, cell(s0, s1, self.drop_path_prob)
